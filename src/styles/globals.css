@@ -2,20 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.marquee {
+  height: 220px;
+}
+
+.marquees {
+  height: 220px;
+}
+
+.track {
+  animation: marquee 30s linear infinite;
+}
+
+.track2 {
+  animation: marquees 30s linear infinite;
+}
+
+.paused .track {
+  animation-play-state: paused;
+}
+.paused .track2 {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes marquees {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
