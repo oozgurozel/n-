@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function Hero() {
     return (
         <section className="relative bg-hero-background bg-cover bg-no-repeat mt-16">
-            <div className="container flex flex-col lg:flex-row items-center place-self-end">
+            <div className="container flex flex-col lg:flex-row items-center sm:place-self-end xxl:place-self-center">
                 <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
                     <h1 className="text-5xl font-extrabold text-gray-900 leading-tight text-center max-w-lg">
                         Tüm İK Süreçleriniz için Tek Çözüm

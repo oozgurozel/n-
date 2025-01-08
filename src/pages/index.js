@@ -37,6 +37,7 @@ export default function Home() {
           name="description"
           content="HRSync ile çalışan bilgilerini yönetin, bordro işlemlerini kolaylaştırın ve işe alım süreçlerini hızlandırın. Verimliliğinizi artırın!"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet" />
         <meta name="keywords" content="İK yazılımı, bordro yönetimi, işe alım, çalışan yönetimi, HRSync" />
         <meta name="author" content="HRSync" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

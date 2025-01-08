@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xxl: '1800px',
+      },
+      fontFamily: {
+        sans: ['Public Sans', 'sans-serif'],
+      },
       colors: {
         primary: "#00b36b",
         secondary: "#f5f5f5",
