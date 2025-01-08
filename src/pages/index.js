@@ -19,7 +19,7 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "HRSync",
-              url: "https://hrsync.com",
+              url: "https://hrsync.com.tr",
               description: "HRSync ile İK süreçlerinizi kolaylaştırın.",
               publisher: {
                 "@type": "Organization",
@@ -44,14 +44,14 @@ export default function Home() {
         <meta property="og:title" content="HRSync - Tüm İK Süreçleriniz için Tek Çözüm" />
         <meta property="og:description" content="Çalışan bilgilerini yönetin, bordro ve yan hak işlemlerini kolaylaştırın. İşe alım süreçlerini hızlandırın." />
         <meta property="og:image" content="/logo.png" />
-        <meta property="og:url" content="https://hrsync.com" />
+        <meta property="og:url" content="https://hrsync.com.tr" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="HRSync - İK Süreçleriniz için Çözüm" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HRSync - İK Süreçleriniz için Çözüm" />
         <meta name="twitter:description" content="HRSync ile çalışan bilgilerini yönetin ve süreçlerinizi kolaylaştırın." />
         <meta name="twitter:image" content="/logo.png" />
-        <link rel="canonical" href="https://hrsync.com" />
+        <link rel="canonical" href="https://hrsync.com.tr" />
       </Head>
 
       <Header />
