@@ -38,7 +38,7 @@ export default function Hero() {
 
                 <div className="lg:w-1/2 flex justify-end">
                     <Image
-                        src="/hero.png"
+                        src="/hero/hero.png"
                         alt="HRSync Dashboard"
                         width={750}
                         height={840}
