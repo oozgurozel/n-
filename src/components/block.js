@@ -26,7 +26,54 @@ const BlogPosts = () => {
             category: "BRANDING",
               image: "/testimonials/blok.png",
         },
-
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
+        {
+            date: "23.01.2023",
+            title: "Çifte Vatandaşlık",
+            description:
+                "Vatandaşlık Nedir? Vatandaşlık, bir ülkenin vatandaşı olarak, o ülkenin yasalarına ve örf ve adetlerine uymak, haklarını ve...",
+            category: "BRANDING",
+           image: "/testimonials/blok.png",
+        },
     ];
 
     return (

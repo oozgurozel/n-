@@ -1,17 +1,13 @@
-import Hero from "@/components/hero"
-import Header from "@/components/header"
-import Steps from "@/components/steps"
-import Features from "@/components/features"
-import Solutions from "@/components/solutions";
-import Testimonials from "@/components/testimonials";
+import Header from "@/components/header";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import Block from "@/components/block";
 import Head from 'next/head';
 
 export default function Home() {
   return (
     <>
-      <Head>
+          <Head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -19,7 +15,7 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Çeken Hukuk",
-              url: "https://www.cekenhukuk.com.tr",
+              url: "https://www.cekenhukuk.com.tr/blog",
               description: "Çeken Hukuk İle Adli İşlemler Daha Kolay",
               publisher: {
                 "@type": "Organization",
@@ -32,7 +28,7 @@ export default function Home() {
             }),
           }}
         />
-        <title>Çeken Hukuk</title>
+        <title>Blog</title>
         <meta
           name="description"
           content="Çeken Hukuk İle Adli Tüm İşlemleriniz Daha Şeffaf Ve Net"
@@ -51,14 +47,33 @@ export default function Home() {
         <meta name="twitter:title" content="Çeken Hukuk İle Daha Başarılı" />
         <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
         <meta name="twitter:image" content="/ceken.png" />
-        <link rel="canonical" href="https://www.cekenhukuk.com.tr" />
+        <link rel="canonical" href="https://www.cekenhukuk.com.tr/blog" />
       </Head>
       <Header />
-      <Hero />
-      <Steps />
-      <Features />
-      <Solutions />
-      <Testimonials />
+      <h2
+        style={{
+          color: "#B99671",
+          fontSize: "2.5em",
+          textAlign: "center",
+          marginBottom: "30px", // Increased margin
+          marginTop: '80px' // Added margin for top spacing if needed
+        }}
+      >
+        <br />
+        Blog
+      </h2>
+      <h6
+        style={{
+          color: "#B99671",
+          fontSize: "1.1em",
+          textAlign: "center",
+          marginBottom: "20px", // Increased margin
+        }}
+      >
+        <br />
+        İçgörüler, Güncellemeler ve Yasal İpuçları.
+      </h6>
+      <Block />
       <Contact />
       <Footer />
     </>

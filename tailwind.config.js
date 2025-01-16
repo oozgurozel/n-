@@ -22,7 +22,16 @@ module.exports = {
         'hero-background': "url('/hero/hero-background.png')",
         'steps-background': "url('/steps/step-background.png')",
         'contact-background': "url('/contact.png')",
-      }
+      },
+      animation: {
+        marquee: 'marquee 10s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '10%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
     },
   },
   plugins: [],

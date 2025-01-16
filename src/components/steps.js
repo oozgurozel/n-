@@ -1,75 +1,157 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Steps() {
+const Testimonials = () => {
+    const fakeTestimonials = [
+        {
+            quote: "Ceza Hukuku",
+            description:
+                "Ceza hukuku, işlenen suçların yasal olarak cezalandırılmasıyla ilgilenen bir hukuk dalıdır. Suç işlemekten hüküm giymiş...",
+        },
+        {
+            quote: "Ticaret Hukuku",
+            description:
+                " Ticaret hukuku, ticaret ilişkileriyle ilgili hukuki kuralların tümünü ifade eder. Ticaret hukuku, ticaret yapılan ülkenin...",
+        },
+        {
+            quote: "Aile ve Kişiler Hukuku",
+            description: "Aile hukuku, bireylerin aile yapısıyla ilgili haklarını düzenler.",
+        },
+        {
+            quote: "İcra ve İflas Hukuku",
+            description:
+                "İcra ve iflas hukuku, Türkiye'de mal varlığın tahsil edilmesi ve borçların kullanılması için kullanılan hukuki verilere verilen isimdir...",
+        },
+        {
+            quote: "İş ve Sosyal Güvenlik Hukuku",
+            description:
+                "İş ve sosyal güvenlik hukuku, istihdam ve işverenlerin hak ve yükümlülüklerini düzenleyen hukuk dalıdır. Bu alan...",
+        },
+    ];
+
     return (
-        <section id="steps" className="mt-24 scroll-m-32">
-            <div className="container mx-auto text-center">
-                <div className="mb-4">
-                    <div className="inline-block border border-[#00A76F7A] text-[#00A76F] text-sm font-semibold px-4 py-2 rounded-full">
-                        Nasıl Çalışır?
-                    </div>
+        <section id="testimonials" className="pb-20 overflow-hidden mt-20 scroll-m-32">
+            <div
+                className="marquee overflow-hidden relative"
+                onMouseEnter={(e) => e.currentTarget.classList.add("paused")}
+                onMouseLeave={(e) => e.currentTarget.classList.remove("paused")}
+            >
+                <div className="track flex items-center justify-start gap-6 absolute whitespace-nowrap">
+                    {fakeTestimonials.concat(fakeTestimonials).map(
+                        (testimonial, index) => (
+                            <div
+                                key={index}
+                                className="p-6 min-w-[400px] max-w-[400px] rounded-xl shadow hover:shadow-lg transition inline-block"
+                                style={{
+                                    backgroundColor: "#DAC5A726",
+                                    border: "2px solid #DAC5A726",
+                                    borderRadius: "0",
+                                }}
+                            >
+                                <blockquote>
+                                    <p
+                                        className="text-lg font-semibold"
+                                        style={{
+                                            color: "#B99671",
+                                        }}
+                                    >
+                                        “{testimonial.quote}”
+                                    </p>
+                                    <p
+                                        className="mt-2 whitespace-pre-wrap"
+                                        style={{
+                                            color: "#B99671",
+                                        }}
+                                    >
+                                        {testimonial.description}
+                                    </p>
+                                </blockquote>
+                                <div className="mt-4 flex items-center">
+                                    <div className="ml-4">
+                                        <p
+                                            className="text-sm font-medium"
+                                            style={{
+                                                color: "#B99671",
+                                            }}
+                                        >
+                                            {testimonial.name}
+                                        </p>
+                                        <p
+                                            className="text-sm"
+                                            style={{
+                                                color: "#B99671",
+                                            }}
+                                        >
+                                            {testimonial.role}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    )}
                 </div>
-                <h2 className="text-5xl font-extrabold text-gray-900 max-w-xl mx-auto leading-tight mb-20">
-                    İK Süreçlerinizi{' '}
-                    <span className="text-[#00A76F]">3 Adımda</span> Kolayca Yönetin
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 p-8 gap-10 lg:gap-60 bg-no-repeat bg-top bg-steps-background">
-                    <div className="bg-white rounded-lg relative">
-                        <div className="rounded-full flex items-center justify-center">
-                            <Image
-                                src="/steps/step1.png"
-                                alt="Kurulum ve Entegrasyon"
-                                width={160}
-                                height={160}
-                            />
-                        </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mt-12 mb-4">
-                            Kurulum ve Entegrasyon
-                        </h3>
-                        <p className="text-gray-600">
-                            İhtiyaçlarınıza göre HRSync’i hızla kurun, mevcut sistemlerinizle
-                            kolayca entegre edin.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-lg relative">
-                        <div className="rounded-full flex items-center justify-center">
-                            <Image
-                                src="/steps/step2.png"
-                                alt="Verilerinizi Yönetin"
-                                width={190}
-                                height={190}
-                            />
-                        </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mt-12 mb-4">
-                            Verilerinizi Yönetin
-                        </h3>
-                        <p className="text-gray-600">
-                            Çalışan bilgileri, bordro, performans ve işe alım gibi tüm
-                            verilerinizi tek bir platformda yönetin.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-lg relative">
-                        <div className="rounded-full flex items-center justify-center">
-                            <Image
-                                src="/steps/step3.png"
-                                alt="Takip ve Raporlama"
-                                width={190}
-                                height={190}
-                            />
-                        </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mt-12 mb-4">
-                            Takip ve Raporlama
-                        </h3>
-                        <p className="text-gray-600">
-                            Gerçek zamanlı analiz ve raporlarla İK süreçlerinizi takip edin,
-                            veriye dayalı kararlar alın.
-                        </p>
-                    </div>
+            </div>
+            <div
+                className="marquees overflow-hidden relative"
+                onMouseEnter={(e) => e.currentTarget.classList.add("paused")}
+                onMouseLeave={(e) => e.currentTarget.classList.remove("paused")}
+            >
+                <div className="track2 flex items-center justify-start gap-6 absolute whitespace-nowrap">
+                    {fakeTestimonials.concat(fakeTestimonials).map(
+                        (testimonial, index) => (
+                            <div
+                                key={index}
+                                className="p-6 min-w-[400px] max-w-[400px] rounded-xl shadow hover:shadow-lg transition inline-block"
+                                style={{
+                                    backgroundColor: "#DAC5A726",
+                                    border: "2px solid #DAC5A726",
+                                    borderRadius: "0",
+                                }}
+                            >
+                                <blockquote>
+                                    <p
+                                        className="text-lg font-semibold"
+                                        style={{
+                                            color: "#B99671",
+                                        }}
+                                    >
+                                        “{testimonial.quote}”
+                                    </p>
+                                    <p
+                                        className="mt-2 whitespace-pre-wrap"
+                                        style={{
+                                            color: "#B99671",
+                                        }}
+                                    >
+                                        {testimonial.description}
+                                    </p>
+                                </blockquote>
+                                <div className="mt-4 flex items-center">
+                                    <div className="ml-4">
+                                        <p
+                                            className="text-sm font-medium"
+                                            style={{
+                                                color: "#B99671",
+                                            }}
+                                        >
+                                            {testimonial.name}
+                                        </p>
+                                        <p
+                                            className="text-sm"
+                                            style={{
+                                                color: "#B99671",
+                                            }}
+                                        >
+                                            {testimonial.role}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    )}
                 </div>
             </div>
         </section>
     );
-}
+};
+
+export default Testimonials;

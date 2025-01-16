@@ -1,100 +1,87 @@
 import React from "react";
-import Image from "next/image";
 
-const Solutions = () => {
-    const solutions = [
-        {
-            title: "Bordro Yönetimi",
-            description:
-                "Bordro işlemlerinizi hızlı ve hatasız bir şekilde tek ekrandan yönetin.",
-            icon: "/solutions/bordro.png",
-        },
-        {
-            title: "Personel Yönetimi",
-            description:
-                "Çalışanların tüm bilgilerini tek bir platformda kolayca yönetin ve güncelleyin.",
-            icon: "/solutions/personel.png",
-        },
-        {
-            title: "Vardiya Yönetimi",
-            description:
-                "Çalışma saatlerini ve vardiyaları verimli bir şekilde planlayarak zaman yönetimini optimize edin.",
-            icon: "/solutions/vardiya.png",
-        },
-        {
-            title: "Raporlar & Analizler",
-            description:
-                "İK verilerinizi detaylı raporlar ve analizlerle inceleyin, veri odaklı kararlar alarak İK süreçlerinizi iyileştirin.",
-            icon: "/solutions/raporlar.png",
-        },
-        {
-            title: "İzin Yönetimi",
-            description:
-                "Çalışanların izin taleplerini kolayca yönetin, onaylayın ve izin süreçlerini şeffaf bir şekilde takip edin.",
-            icon: "/solutions/izin.png",
-        },
-        {
-            title: "Harcama Yönetimi",
-            description:
-                "Çalışanların harcama taleplerini takip edin, onaylayın ve bütçenizi kolayca yönetin.",
-            icon: "/solutions/harcama.png",
-        },
-        {
-            title: "Puantaj Yönetimi",
-            description:
-                "Çalışanların çalışma saatlerini, vardiyalarını ve fazla mesailerini pratik şekilde takip edin ve yönetin.",
-            icon: "/solutions/puantaj.png",
-        },
-        {
-            title: "Zimmet Yönetimi",
-            description:
-                "Çalışanlara teslim edilen ekipman ve demirbaşları kolayca takip edin, zimmet süreçlerini düzenli yönetin.",
-            icon: "/solutions/zimmet.png",
-        },
-        {
-            title: "Ajanda",
-            description:
-                "Toplantı, görev ve etkinlikleri tek bir ajandada planlayın, çalışanlarınız günlerini verimli yönetsin.",
-            icon: "/solutions/ajanda.png",
-        },
-    ];
+const ProcessFlow = () => {
+  return (
+    <div className="bg-black text-white flex flex-col items-center py-16">
+      <div className="text-center mb-12">
+        <div className="text-sm uppercase tracking-widest text-gray-500 mb-2">
+          SÜREÇ
+        </div>
+        <h2 className="text-4xl font-light" style={{ color: '#B99671' }}>
+          Sürecimiz
+        </h2>
+      </div>
 
-    return (
-        <section id="solutions" className="scroll-m-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-                <div className="container mx-auto text-center flex flex-col gap-4 p-8">
-                    <div className="mb-4">
-                        <div className="inline-block border border-[#00A76F7A] text-[#00A76F] text-sm font-semibold px-4 py-2 rounded-full">
-                            Çözümler
-                        </div>
-                    </div>
-                    <h2 className="text-5xl font-extrabold text-gray-900 max-w-xl mx-auto leading-tight mb-3">
-                        İK Süreçlerinizi Kolaylaştıran {' '}
-                        <span className="text-[#00A76F]">Çözümler</span>
-                    </h2>
-                    <h4 className="text-[#637381] text-base leading-relaxed max-w-2xl font-semibold mx-auto">
-                        HRSync ile personel yönetiminden bordroya, performanstan zaman takibine tüm İK süreçlerinizi tek platformda yönetin.
-                    </h4>
-                </div>
-                <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {solutions.map((solution, index) => (
-                        <div
-                            key={index}
-                            className="p-6 bg-white border border-[#919EAB29] rounded-lg hover:shadow-lg transition"
-                        >
-                            <div className="flex items-center justify-center h-12 w-12 rounded-md shadow text-green-600">
-                                <Image src={solution.icon} width={42} height={42} />
-                            </div>
-                            <h3 className="mt-4 text-2xl font-bold text-gray-900">
-                                {solution.title}
-                            </h3>
-                            <p className="mt-2 text-base font-semibold text-gray-500">{solution.description}</p>
-                        </div>
-                    ))}
-                </div>
+      <div className="relative w-full max-w-5xl flex flex-col items-center">
+        {/* Vertical Line */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 top-20 bottom-0 w-[1px] bg-gray-700"></div>
+
+        {/* Step 1 */}
+        <div className="relative z-10 mb-16 w-full flex justify-start items-center">
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-5 bg-black rounded-full w-8 h-8 flex items-center justify-center text-sm text-gray-500">
+            01
+          </div>
+          <div className="w-1/2 pl-8">
+            <div
+              className="p-8 rounded-md w-fit text-left"
+              style={{ backgroundColor: 'rgba(218, 197, 167, 0.06)' }}
+            >
+              <h3 className="text-lg font-medium text-[#C19A6B] mb-2">
+                DANIŞMA VE VAKA DEĞERLENDİRME
+              </h3>
+              <p className="text-sm" style={{ color: '#B99671' }}>
+                Çalışma sürecimizdeki ilk adım, deneyimli avukatlarımızdan biriyle bir
+                danışma görüşmesi planlamaktır.
+              </p>
             </div>
-        </section>
-    );
+          </div>
+        </div>
+
+        {/* Step 2 */}
+        <div className="relative z-10 mb-16 w-full flex justify-end items-center">
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-5 bg-black rounded-full w-8 h-8 flex items-center justify-center text-sm text-gray-500">
+            02
+          </div>
+          <div className="w-1/2 pr-8">
+            <div
+              className="p-8 rounded-md w-fit text-right"
+              style={{ backgroundColor: 'rgba(218, 197, 167, 0.06)' }}
+            >
+              <h3 className="text-lg font-medium text-[#C19A6B] mb-2">
+                STRATEJİK PLANLAMA VE TEMSİL
+              </h3>
+              <p className="text-sm" style={{ color: '#B99671' }}>
+                Davanızı değerlendirdikten ve hedeflerinizi belirledikten sonra,
+                mümkün olan en iyi sonuca ulaşmak için stratejik bir plan
+                geliştireceğiz.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3 */}
+        <div className="relative z-10 w-full flex justify-start items-center">
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-5 bg-black rounded-full w-8 h-8 flex items-center justify-center text-sm text-gray-500">
+            03
+          </div>
+          <div className="w-1/2 pl-7">
+            <div
+              className="p-8 rounded-md w-fit text-left"
+              style={{ backgroundColor: 'rgba(218, 197, 167, 0.06)' }}
+            >
+              <h3 className="text-lg font-medium text-[#B99671] mb-2">
+                ÇÖZÜM VE TAKİP
+              </h3>
+              <p className="text-sm" style={{ color: '#B99671' }}>
+                Çalışma sürecimizin son aşamasında, hedeflerinizi karşılayan ve yasal
+                ihtiyaçlarınızı tatmin eden bir çözüme ulaşmaya odaklanacağız.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Solutions;
+export default ProcessFlow;

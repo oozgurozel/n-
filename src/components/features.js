@@ -1,51 +1,43 @@
-export default function Steps() {
+export default function AboutUs() {
     return (
-        <section id="features" className="mt-24 scroll-m-24">
-            <div className="container mx-auto text-center flex flex-col gap-4 p-8">
-                <div className="mb-4">
-                    <div className="inline-block border border-[#00A76F7A] text-[#00A76F] text-sm font-semibold px-4 py-2 rounded-full">
-                        Özellikler
-                    </div>
-                </div>
-                <h2 className="text-5xl font-extrabold text-gray-900 max-w-xl mx-auto leading-tight mb-3">
-                    İK Yönetiminde Yeni Nesil{' '}
-                    <span className="text-[#00A76F]">Özellikler</span>
-                </h2>
-                <h4 className="text-[#637381] text-base leading-relaxed max-w-2xl font-semibold mx-auto mb-20">
-                    HRSync ile İK süreçlerinizi kolaylaştırın, verimliliği artırın ve zamandan tasarruf edin. Tüm özelliklerimizi keşfedin!
-                </h4>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 lg:px-32 max-w-[1440px] mx-auto">
-                <div className="md:col-span-1">
+        <section id="about-us" className="relative bg-black text-[#B99671] py-24 scroll-mt-24">
+            <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12 px-6 lg:px-16">
+             
+                <div className="flex-1">
                     <img
-                        src="/features/features1.png"
-                        alt="Cinsiyet Dağılımı"
-                        className="w-full h-full"
+                        src="/cekennofis.png" 
+                        alt="Çeken Hukuk Ofisi"
+                        className="w-full rounded-lg shadow-lg"
                     />
                 </div>
-
-                <div className="md:col-span-2">
-                    <img
-                        src="/features/features2.png"
-                        alt="İzin Bilgileri"
-                        className="w-full h-full"
-                    />
-                </div>
-
-                <div className="md:col-span-2">
-                    <img
-                        src="/features/features3.png"
-                        alt="Kişisel Planlama"
-                        className="w-full h-full"
-                    />
-                </div>
-
-                <div className="md:col-span-1">
-                    <img
-                        src="/features/features4.png"
-                        alt="Çalışan Erişilebilirliği"
-                        className="w-full h-full"
-                    />
+                <div
+                    className="flex-1 p-12 shadow-lg"
+                    style={{
+                        backgroundColor: 'rgba(218, 197, 167, 0.15)', 
+                        borderRadius: '0px', 
+                        minHeight: '969px', 
+                        maxWidth: '2000px', 
+                    }}
+                >
+                    <h2 className="text-4xl font-Gambetta mb-6">Hakkımızda</h2>
+                    <p className="text-lg leading-relaxed" style={{ lineHeight: '2.1' }}>
+                        Çeken Hukuk Bürosu 2019 yılında Ankara’da kurulmuştur. Çeken Hukuk Bürosu bünyesinde
+                        konusunda uzman avukatlardan kurulu bir hukuk ve danışmanlık bürosu olarak
+                        faaliyetlerine devam etmektedir.
+                    </p>
+                    <p className="text-lg leading-relaxed mt-6" style={{ lineHeight: '2.1' }}>
+                        Çeken Hukuk Bürosu hukukun her alanında Türk, yabancı ve çok uluslu gerçek ve tüzel kişi
+                        müvekkillerine başarıyla hukuki danışmanlık hizmetleri vermekte ve müvekkillerini ulusal ve
+                        uluslararası alanlarda başarıyla temsil etmektedir.
+                    </p>
+                    <p className="text-lg leading-relaxed mt-6" style={{ lineHeight: '2.1' }}>
+                        Hukuk Büromuz hukukun her alanında faaliyet göstermekte birlikte ağırlıklı olarak faaliyet
+                        gösterdiği Deniz Hukuku, İcra ve İflas Hukuku, Ticaret Hukuku, Şirketler Hukuku, İş Hukuku,
+                        Borçlar Hukuku, Basın Hukuku, Medeni Hukuk, Eşya Hukuku, İdare Hukuku, Vergi Hukuku,
+                        Ceza Hukuku alanlarında bu alan üzerine yoğunlaşmış avukat ve akademisyenlerin
+                        yönetiminde kurduğu ihtisas departmanları ile müvekkillerine üst düzeyde ve nitelikli
+                        avukatlık hizmetleri vermektedir.
+                    </p>
                 </div>
             </div>
         </section>
