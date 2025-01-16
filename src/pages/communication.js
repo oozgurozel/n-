@@ -1,11 +1,11 @@
 import Header from "@/components/header"
-import Features from "@/components/features"
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import Head from 'next/head';
 export default function Home() {
   return (
     <>    
-      <Head>
+  <Head>
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
