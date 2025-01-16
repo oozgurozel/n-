@@ -56,6 +56,7 @@ export default function Home() {
         <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
         <meta name="twitter:image" content="/ceken.png" />
         <link rel="canonical" href="https://www.cekenhukuk.com.tr/blockin" />
+        <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
       <Header />
       <div style={{ padding: '110px 0 40px 0' }}>

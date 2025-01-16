@@ -48,6 +48,7 @@ export default function Home() {
         <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
         <meta name="twitter:image" content="/ceken.png" />
         <link rel="canonical" href="https://www.cekenhukuk.com.tr/aboutus" />
+        <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
       <div style={{display: 'flex', flexDirection: 'column' }}>
         <Header style={{ marginBottom: '60px' }} /> 

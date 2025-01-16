@@ -2,10 +2,11 @@ import Header from "@/components/header";
 import Contact from "@/components/contact";
 import Image from 'next/image';
 import Head from 'next/head';
+
 export default function Home() {
   return (
     <>
-              <Head>
+      <Head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -46,6 +47,7 @@ export default function Home() {
         <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
         <meta name="twitter:image" content="/ceken.png" />
         <link rel="canonical" href="https://www.cekenhukuk.com.tr/cezahukuku" />
+        <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
       <Header />
       <h2 style={{ color: "#B99671", fontSize: "2.5em", textAlign: "center", marginBottom: '20px', marginTop: '60px' }}>
@@ -53,6 +55,7 @@ export default function Home() {
         Ceza Hukuku
       </h2>
       <div
+        className="main-content" // Ana div'e bir class verdik
         style={{
           maxWidth: "1200px",
           margin: "20px auto",
@@ -61,21 +64,22 @@ export default function Home() {
           gap: '40px',
         }}
       >
-        <div style={{ flex: 1, maxWidth: '600px' }}>
+        <div className="image-container" style={{ flex: 1, maxWidth: '600px' }}>
           <Image
             src="/cezah.png"
             alt="Ceza Hukuku"
             width={600}
             height={450}
-            style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+            style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', width: '100%', height: 'auto' }}
           />
         </div>
         <div
+          className="text-container" // Metin div'ine bir class verdik
           style={{
             flex: 1,
             backgroundColor: "rgba(185, 150, 113, 0.15)",
             padding: "20px",
-            minHeight: '710px',
+            minHeight: 'auto',
           }}
         >
           <br></br>
@@ -120,7 +124,27 @@ export default function Home() {
         </div>
       </footer>
       <Contact />
+      <style jsx>{`
+        /* Web görünümü için varsayılan stiller (zaten inline olarak tanımlı) */
+        .main-content {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+        }
 
+        /* Mobil görünüm için medya sorgusu */
+        @media (max-width: 768px) {
+          .main-content {
+            flex-direction: column; /* Mobil'de alt alta sırala */
+            align-items: stretch; /* İçeriklerin genişliği tam olsun */
+          }
+
+          .image-container {
+            max-width: 100%; /* Resim konteyneri tam genişlik */
+            margin-bottom: 20px; /* Resim ile metin arasına boşluk */
+          }
+        }
+      `}</style>
     </>
   );
 }

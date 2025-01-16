@@ -2,6 +2,7 @@ import Header from "@/components/header"
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Head from 'next/head';
+
 export default function Home() {
   return (
     <>    
@@ -46,6 +47,7 @@ export default function Home() {
     <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
     <meta name="twitter:image" content="/ceken.png" />
     <link rel="canonical" href="https://www.cekenhukuk.com.tr" />
+    <link rel="icon" href="/ch.png" sizes="any" />
   </Head>
       <Header />
       <Contact />

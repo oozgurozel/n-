@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="flex flex-col lg:flex-row justify-between gap-8">
                     <div className="max-w-sm">
                         <img
-                            src="/ceken.png"
+                            src="/cekennnn.png"
                             alt="HRSync Logo"
                             className="h-24 mb-4"
                         />
