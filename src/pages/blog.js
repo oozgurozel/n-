@@ -50,7 +50,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.cekenhukuk.com.tr/blog" />
         <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
-      <Header />
+
       <h2
         style={{
           color: "#B99671",
@@ -76,7 +76,7 @@ export default function Home() {
       </h6>
       <Block />
       <Contact />
-      <Footer />
+
     </>
   );
 }

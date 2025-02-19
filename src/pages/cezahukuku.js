@@ -49,7 +49,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.cekenhukuk.com.tr/cezahukuku" />
         <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
-      <Header />
+
       <h2 style={{ color: "#B99671", fontSize: "2.5em", textAlign: "center", marginBottom: '20px', marginTop: '60px' }}>
         <br></br>
         Ceza Hukuku

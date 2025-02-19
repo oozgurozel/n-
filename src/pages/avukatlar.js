@@ -2,6 +2,7 @@ import Header from "@/components/header";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Head from 'next/head';
+import Lawyers from "@/components/lawyers";
 export default function Home() {
   return (
     <>
@@ -48,78 +49,9 @@ content="Çeken Hukuk İle Adli Tüm İşlemleriniz Daha Şeffaf Ve Net"
 <link rel="canonical" href="https://www.cekenhukuk.com.tr/avukatlar" />
 <link rel="icon" href="/chh.png" sizes="any" />
 </Head>
-      <Header />
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '30px',
-        margin: '30px 0',
-      }}>
-        <h2 style={{ color: '#DAC5A7', fontSize: '2.4em', fontFamily: 'Satoshi, sans-serif', marginTop: '50px' }}>Avukatlarımız</h2>
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '30px',
-          marginTop: '30px'
-        }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'rgba(218, 197, 167, 0.15)',
-            padding: '25px 20px 35px 20px',
-            width: '280px',
-            maxWidth: '100%',
-            border: '2px solid #DAC5A726',
-          }}>
-            <img src="./acı.webp.png" alt="Erdoğan Sapanoğlu" style={{ width: '100%', height: 'auto' }} />
-            <p style={{ color: '#DAC5A7', marginTop: '20px', textAlign: 'center', fontSize: '1.1em' }}>Erdoğan Sapanoğlu</p>
-          </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'rgba(218, 197, 167, 0.15)',
-            padding: '25px 20px 35px 20px',
-            width: '280px',
-            maxWidth: '100%',
-            border: '2px solid #DAC5A726',
-          }}>
-            <img src="./arda.webp.png" alt="Arda Can Çeken" style={{ width: '100%', height: 'auto' }} />
-            <p style={{ color: '#DAC5A7', marginTop: '20px', textAlign: 'center', fontSize: '1.1em' }}>Arda Can Çeken</p>
-          </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'rgba(218, 197, 167, 0.15)',
-            padding: '25px 20px 35px 20px',
-            width: '280px',
-            maxWidth: '100%',
-            border: '2px solid #DAC5A726',
-          }}>
-            <img src="./merve.webp.png" alt="Merve Öztürkçü Gümüş" style={{ width: '100%', height: 'auto' }} />
-            <p style={{ color: '#DAC5A7', marginTop: '20px', textAlign: 'center', fontSize: '1.1em' }}>Merve Öztürkçü Gümüş</p>
-          </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'rgba(218, 197, 167, 0.15)',
-            padding: '25px 20px 35px 20px',
-            width: '280px',
-            maxWidth: '100%',
-            border: '2px solid #DAC5A726',
-          }}>
-            <img src="./ESMA.jpg" alt="Esma Betül Herdem" style={{ width: '100%', height: 'auto' }} />
-            <p style={{ color: '#DAC5A7', marginTop: '20px', textAlign: 'center', fontSize: '1.1em' }}>Esma Betül Herdem</p>
-          </div>
-        </div>
-      </div>
+     <Lawyers/>
       <Contact />
-      <Footer />
+
     </>
   );
 }

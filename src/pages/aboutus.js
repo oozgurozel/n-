@@ -51,11 +51,11 @@ export default function Home() {
         <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
       <div style={{display: 'flex', flexDirection: 'column' }}>
-        <Header style={{ marginBottom: '60px' }} /> 
+
         <br></br>
         <Features style={{ marginBottom: '60px' }} /> 
         <Contact style={{ marginBottom: '50px' }} /> 
-        <Footer />
+
       </div>
     </>
   );

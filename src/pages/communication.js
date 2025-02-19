@@ -49,9 +49,7 @@ export default function Home() {
     <link rel="canonical" href="https://www.cekenhukuk.com.tr" />
     <link rel="icon" href="/ch.png" sizes="any" />
   </Head>
-      <Header />
       <Contact />
-      <Footer />
     </>
   );
 }

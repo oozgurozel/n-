@@ -54,7 +54,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.cekenhukuk.com.tr" />
         <link rel="icon" href="/chh.png" sizes="any" />
       </Head>
-      <Header />
+
       <Hero />
       <Steps />
       <Features />
