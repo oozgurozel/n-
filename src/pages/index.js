@@ -1,11 +1,5 @@
-import Hero from "@/components/hero"
-import Header from "@/components/header"
-import Steps from "@/components/steps"
-import Features from "@/components/features"
-import Solutions from "@/components/solutions";
-import Testimonials from "@/components/testimonials";
-import Contact from "@/components/contact";
-import Footer from "@/components/footer";
+
+import Login from "@/components/login"
 import Head from 'next/head';
 
 export default function Home() {
@@ -18,50 +12,44 @@ export default function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Çeken Hukuk",
-              url: "https://www.cekenhukuk.com.tr",
-              description: "Çeken Hukuk İle Adli İşlemler Daha Kolay",
+              name: "NÖ",
+              url: "https://www.noezel.com.tr",
+              description: "NÖ",
               publisher: {
                 "@type": "Organization",
-                name: "Çeken Hukuk",
+                name: "NÖ",
                 logo: {
                   "@type": "ImageObject",
-                  url: "/ceken.png",
+                  url: "/nozel.png",
                 },
               },
             }),
           }}
         />
-        <title>Çeken Hukuk</title>
+        <title>NÖ</title>
         <meta
           name="description"
-          content="Çeken Hukuk İle Adli Tüm İşlemleriniz Daha Şeffaf Ve Net"
+          content="NÖ"
         />
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap" rel="stylesheet" />
-        <meta name="keywords" content="Çeken Hukuk Hakkımızda Hizmetlerimiz Avukatlarımız Ve Blog" />
-        <meta name="author" content="Çeken Hukuk" />
+        <meta name="keywords" content="NÖ Hakkımızda Hizmetlerimiz Avukatlarımız Ve Blog" />
+        <meta name="author" content="NÖ" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="Çeken Hukuk İle Çözüm" />
-        <meta property="og:description" content="Çeken Hukuk Uzman Kadrosu İle Yanınızda" />
-        <meta property="og:image" content="/ceken.png" />
-        <meta property="og:url" content="https://www.cekenhukuk.com.tr" />
+        <meta property="og:title" content="NÖ" />
+        <meta property="og:description" content="NÖ" />
+        <meta property="og:image" content="/nozel.png" />
+        <meta property="og:url" content="https://www.noezel.com.tr" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Çeken Hukuk İle Daha Kolay" />
+        <meta property="og:title" content="NÖ" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Çeken Hukuk İle Daha Başarılı" />
-        <meta name="twitter:description" content="Çeken Hukuk Biliği Avukatlarla Yanınızda" />
-        <meta name="twitter:image" content="/ceken.png" />
-        <link rel="canonical" href="https://www.cekenhukuk.com.tr" />
-        <link rel="icon" href="/chh.png" sizes="any" />
+        <meta name="twitter:title" content="NÖ" />
+        <meta name="twitter:description" content="NÖ" />
+        <meta name="twitter:image" content="/nozel.png" />
+        <link rel="canonical" href="https://www.noezel.com.tr" />
+        <link rel="icon" href="/NÖ.png" sizes="any" />
       </Head>
+      <Login />
 
-      <Hero />
-      <Steps />
-      <Features />
-      <Solutions />
-      <Testimonials />
-      <Contact />
-      <Footer />
     </>
   );
 }
