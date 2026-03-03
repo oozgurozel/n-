@@ -48,14 +48,12 @@ export default function Login() {
         </div>
         
         <form onSubmit={handleSubmit}>
-          <input 
-            type="email" // Tipi email olarak değiştirdik
-            placeholder="E-posta Adresiniz" 
+         <input 
+            type="text" // 'email' yerine 'text' yaptık
+            inputMode="email" // Klavyede @ işaretini yine gösterir ama zorunlu tutmaz
+            placeholder="E-posta veya Kullanıcı Adı" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={styles.input}
-            disabled={isLoading}
-            required 
           />
           <input 
             type="password" 
