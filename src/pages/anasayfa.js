@@ -16,7 +16,7 @@ export default function Dashboard() {
     {
       id: 'finans',
       title: 'Finans Yönetimi',
-      description: 'Özgür & Nisa bütçe ve harcama takibi.',
+      description: 'NÖ Bankacılık Hizmetleri',
       icon: '💰',
       path: '/finans',
       color: '#10b981' // Yeşil
@@ -32,7 +32,7 @@ export default function Dashboard() {
     {
       id: 'ani-defteri',
       title: 'Anı Defteri',
-      description: 'Günlük düşüncelerini ve özel anılarını yaz.',
+      description: 'Özel Günlerimizi Ve Anılarımızı Yazalım Lütfen.',
       icon: '📓',
       path: '/ani-defteri',
       color: '#f59e0b' // Kehribar/Turuncu
@@ -48,10 +48,18 @@ export default function Dashboard() {
     {
       id: 'game',
       title: 'Oyun',
-      description: 'Oyun oyna .',
+      description: 'Resimleri Eşleştir.',
       icon: '🎮',
       path: '/game',
       color: '#f87171' // kırmızı
+    },
+    {
+      id: 'game2',
+      title: 'Oyun',
+      description: 'Soru Sor Puan Topla.',
+      icon: '🎮',
+      path: '/game2',
+      color: '#ffea00' // sarı  
     }
   ];
 
