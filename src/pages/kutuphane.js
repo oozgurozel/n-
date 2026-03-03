@@ -252,7 +252,7 @@ export default function Kutuphane() {
                       onClick={() => window.open(selectedBook.file_url, '_blank')} 
                       className="download-view-btn"
                     >
-                      📖 Tam Ekran
+                      📖 Tam Ekrann
                     </button>
                 </div>
               </div>
