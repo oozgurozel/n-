@@ -76,6 +76,14 @@ export default function Dashboard() {
       icon: '⚡',
       path: '/titresim',
       color: '#06b6d4' // Turkuaz
+    },
+    {
+      id: 'hukuk',
+      title: 'Adalet Terazisi',
+      description: 'Hukuk bilgini zamana karşı test et.',
+      icon: '⚖️',
+      path: '/hukukgame', // Dosyaya verdiğin isim
+      color: '#fbbf24' // Altın Sarısı
     }
   ];
 
