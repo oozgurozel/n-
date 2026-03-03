@@ -18,7 +18,7 @@ export default function Dashboard() {
       title: 'Finans Yönetimi',
       description: 'Özgür & Nisa bütçe ve harcama takibi.',
       icon: '💰',
-      path: '/butce',
+      path: '/finans',
       color: '#10b981' // Yeşil
     },
     {
@@ -44,6 +44,14 @@ export default function Dashboard() {
       icon: '📚',
       path: '/kutuphane',
       color: '#8b5cf6' // Mor
+    },
+    {
+      id: 'game',
+      title: 'Oyun',
+      description: 'Oyun oyna .',
+      icon: '🎮',
+      path: '/game',
+      color: '#f87171' // kırmızı
     }
   ];
 

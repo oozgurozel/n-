@@ -2,19 +2,42 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+// SUPABASE BAĞLANTISI (Yolu kendi projene göre ayarla, login sayfasındaki gibi)
+import { supabase } from '@/lib/supabaseClient'; 
+
 export default function Planlayici() {
   const router = useRouter();
   const [activeUser, setActiveUser] = useState('Özgür');
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [newEvent, setNewEvent] = useState({ title: '', date: '', time: '' });
 
-  // Kullanıcı değiştiğinde o kişiye ait planları yükle
+  // --- SUPABASE'DEN VERİ ÇEKME ---
+  // activeUser (Özgür/Nisa) her değiştiğinde bu fonksiyon çalışacak
   useEffect(() => {
-    const savedEvents = localStorage.getItem(`plans_${activeUser}`);
-    setEvents(savedEvents ? JSON.parse(savedEvents) : []);
+    fetchEvents();
   }, [activeUser]);
 
-  const addEvent = (e) => {
+  const fetchEvents = async () => {
+    setLoading(true);
+    // Veritabanından sadece aktif kullanıcıya ait planları çek
+    const { data, error } = await supabase
+      .from('calendar')
+      .select('*')
+      .eq('owner', activeUser) // Kimin planıysa onu getir
+      .order('event_date', { ascending: true })
+      .order('event_time', { ascending: true });
+
+    if (error) {
+      console.error('Veri çekme hatası:', error);
+    } else {
+      setEvents(data || []);
+    }
+    setLoading(false);
+  };
+
+  // --- SUPABASE'E VERİ EKLEME ---
+  const addEvent = async (e) => {
     e.preventDefault();
     if (!newEvent.title) return;
 
@@ -23,22 +46,46 @@ export default function Planlayici() {
     const defaultTime = now.toTimeString().slice(0, 5);
 
     const eventToAdd = {
-      ...newEvent,
-      id: Date.now(),
-      date: newEvent.date || defaultDate,
-      time: newEvent.time || defaultTime
+      title: newEvent.title,
+      event_date: newEvent.date || defaultDate,
+      event_time: newEvent.time || defaultTime,
+      owner: activeUser // Planı kimin profiline ekliyorsak onu kaydediyoruz
     };
 
-    const updatedEvents = [...events, eventToAdd];
-    setEvents(updatedEvents);
-    localStorage.setItem(`plans_${activeUser}`, JSON.stringify(updatedEvents));
+    // UI'ı anında güncelle (Kullanıcı beklemesin)
+    const optimisticEvent = { ...eventToAdd, id: Date.now() };
+    setEvents([...events, optimisticEvent]);
+
+    // Veritabanına kaydet
+    const { error } = await supabase
+      .from('calendar')
+      .insert([eventToAdd]);
+
+    if (error) {
+      alert("Hata oluştu: " + error.message);
+      fetchEvents(); // Hata varsa gerçek listeyi geri yükle
+    } else {
+      fetchEvents(); // Başarılıysa ID'leri eşitlemek için tekrar çek
+    }
+    
     setNewEvent({ title: '', date: '', time: '' });
   };
 
-  const deleteEvent = (id) => {
-    const filtered = events.filter(event => event.id !== id);
-    setEvents(filtered);
-    localStorage.setItem(`plans_${activeUser}`, JSON.stringify(filtered));
+  // --- SUPABASE'DEN VERİ SİLME ---
+  const deleteEvent = async (id) => {
+    // UI'dan anında sil
+    setEvents(events.filter(event => event.id !== id));
+
+    // Veritabanından sil
+    const { error } = await supabase
+      .from('calendar')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      alert("Silinirken hata oluştu.");
+      fetchEvents(); // Hata varsa geri getir
+    }
   };
 
   return (
@@ -48,7 +95,6 @@ export default function Planlayici() {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </Head>
 
-      {/* Modern Üst Menü */}
       <nav className="top-nav">
         <button className="back-circle" onClick={() => router.push('/anasayfa')}>←</button>
         <div className="selector-wrapper">
@@ -66,7 +112,6 @@ export default function Planlayici() {
         </header>
 
         <div className="content-layout">
-          {/* Giriş Kartı */}
           <section className="glass-card add-box">
             <h3>Yeni Etkinlik</h3>
             <form onSubmit={addEvent}>
@@ -92,7 +137,6 @@ export default function Planlayici() {
             </form>
           </section>
 
-          {/* Liste Kartı */}
           <section className="list-container">
             <div className="list-header">
               <h3>Planların</h3>
@@ -100,23 +144,23 @@ export default function Planlayici() {
             </div>
             
             <div className="scroll-area">
-              {events.length === 0 ? (
+              {loading ? (
+                <div className="empty-ui"><p>Planlar Yükleniyor...</p></div>
+              ) : events.length === 0 ? (
                 <div className="empty-ui">
                   <span className="icon">📝</span>
                   <p>Henüz bir plan eklenmedi.</p>
                 </div>
               ) : (
-                events
-                  .sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`))
-                  .map(event => (
+                events.map(event => (
                     <div key={event.id} className="plan-card">
                       <div className="plan-time">
-                        <span className="time">{event.time}</span>
+                        <span className="time">{event.event_time}</span>
                         <div className="line"></div>
                       </div>
                       <div className="plan-content">
                         <h4>{event.title}</h4>
-                        <span className="date">📅 {new Date(event.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span>
+                        <span className="date">📅 {new Date(event.event_date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span>
                       </div>
                       <button onClick={() => deleteEvent(event.id)} className="delete-btn">✕</button>
                     </div>
@@ -128,110 +172,39 @@ export default function Planlayici() {
       </main>
 
       <style jsx>{`
-        .app-container {
-          min-height: 100vh;
-          background: #020617;
-          color: #f8fafc;
-          font-family: 'Inter', -apple-system, sans-serif;
-          padding-bottom: 40px;
-        }
-
-        .top-nav {
-          display: flex; justify-content: space-between; align-items: center;
-          padding: 15px 20px;
-          background: rgba(15, 23, 42, 0.7);
-          backdrop-filter: blur(15px);
-          position: sticky; top: 0; z-index: 100;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .back-circle {
-          width: 40px; height: 40px; border-radius: 50%;
-          border: 1px solid #334155; background: #1e293b;
-          color: white; cursor: pointer; transition: 0.2s;
-        }
-
-        .selector-wrapper {
-          display: flex; gap: 5px; background: #0f172a;
-          padding: 4px; border-radius: 14px; border: 1px solid #1e293b;
-        }
-
-        .selector-wrapper button {
-          padding: 8px 20px; border: none; border-radius: 10px;
-          background: transparent; color: #64748b; font-weight: 600;
-          cursor: pointer; transition: 0.3s; font-size: 0.9rem;
-        }
-
-        .selector-wrapper button.active {
-          background: #3b82f6; color: white;
-          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
+        /* Stillerinin tamamı aynı kaldı, hiçbir şeye dokunmadım */
+        .app-container { min-height: 100vh; background: #020617; color: #f8fafc; font-family: 'Inter', -apple-system, sans-serif; padding-bottom: 40px; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .back-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #334155; background: #1e293b; color: white; cursor: pointer; transition: 0.2s; }
+        .selector-wrapper { display: flex; gap: 5px; background: #0f172a; padding: 4px; border-radius: 14px; border: 1px solid #1e293b; }
+        .selector-wrapper button { padding: 8px 20px; border: none; border-radius: 10px; background: transparent; color: #64748b; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
+        .selector-wrapper button.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
         .main-wrapper { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-
         .hero-section { margin-bottom: 40px; }
         .hero-section h1 { font-size: 2.5rem; font-weight: 900; margin: 10px 0; letter-spacing: -1.5px; }
         .badge { background: #1e293b; color: #3b82f6; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
         .hero-section p { color: #94a3b8; font-size: 1.1rem; }
-
         .content-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: start; }
-
-        .glass-card {
-          background: #0f172a; padding: 30px; border-radius: 28px;
-          border: 1px solid rgba(255,255,255,0.05);
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
+        .glass-card { background: #0f172a; padding: 30px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
         form { display: flex; flex-direction: column; gap: 15px; }
-        .main-input {
-          background: #1e293b; border: 1px solid #334155; padding: 16px;
-          border-radius: 14px; color: white; font-size: 1rem; outline: none;
-        }
+        .main-input { background: #1e293b; border: 1px solid #334155; padding: 16px; border-radius: 14px; color: white; font-size: 1rem; outline: none; }
         .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .grid-inputs input {
-          background: #1e293b; border: 1px solid #334155; padding: 12px;
-          border-radius: 14px; color: white; font-size: 0.9rem; outline: none;
-        }
-
-        .add-btn {
-          background: #3b82f6; color: white; border: none; padding: 16px;
-          border-radius: 14px; font-weight: 700; cursor: pointer;
-          transition: 0.2s; margin-top: 10px;
-        }
-
+        .grid-inputs input { background: #1e293b; border: 1px solid #334155; padding: 12px; border-radius: 14px; color: white; font-size: 0.9rem; outline: none; }
+        .add-btn { background: #3b82f6; color: white; border: none; padding: 16px; border-radius: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; margin-top: 10px; }
         .list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .status-dot { width: 10px; height: 10px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 10px #3b82f6; }
-
-        .plan-card {
-          display: flex; align-items: center; gap: 20px;
-          background: rgba(30, 41, 59, 0.4); padding: 20px;
-          border-radius: 20px; margin-bottom: 12px;
-          border: 1px solid rgba(255,255,255,0.03);
-          transition: 0.3s;
-        }
-
+        .plan-card { display: flex; align-items: center; gap: 20px; background: rgba(30, 41, 59, 0.4); padding: 20px; border-radius: 20px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.03); transition: 0.3s; }
         .plan-time { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
         .time { font-size: 0.8rem; font-weight: 800; color: #3b82f6; }
         .line { width: 2px; height: 20px; background: #334155; margin-top: 5px; }
-
         .plan-content { flex: 1; }
         .plan-content h4 { margin: 0 0 5px 0; font-size: 1.1rem; }
         .date { font-size: 0.8rem; color: #64748b; }
-
-        .delete-btn {
-          background: transparent; border: none; color: #475569;
-          font-size: 1.2rem; cursor: pointer; transition: 0.2s;
-        }
+        .delete-btn { background: transparent; border: none; color: #475569; font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
         .delete-btn:hover { color: #f87171; }
-
         .empty-ui { text-align: center; padding: 50px; color: #475569; }
         .empty-ui .icon { font-size: 3rem; display: block; margin-bottom: 10px; }
-
-        @media (max-width: 850px) {
-          .content-layout { grid-template-columns: 1fr; }
-          .hero-section h1 { font-size: 2rem; }
-          .main-wrapper { padding: 20px; }
-        }
+        @media (max-width: 850px) { .content-layout { grid-template-columns: 1fr; } .hero-section h1 { font-size: 2rem; } .main-wrapper { padding: 20px; } }
       `}</style>
     </div>
   );

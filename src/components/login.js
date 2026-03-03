@@ -1,34 +1,42 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/router'; // Değişti: navigation yerine router
+import { useRouter } from 'next/router';
+// 1. SUPABASE BAĞLANTISINI İÇERİ AKTARIYORUZ
+// (Dosya yolu senin klasör yapına göre '../lib/supabaseClient' veya '@/lib/supabaseClient' olabilir)
+import { supabase } from '../lib/supabaseClient';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  // Supabase Auth e-posta kullandığı için username yerine email state'i kullanıyoruz
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { // async ekledik çünkü Supabase'den cevap bekleyeceğiz
     e.preventDefault();
-    const correctUser = "nisa";
-    const correctPass = "özgür";
-    
+    setIsLoading(true);
+    setMessage({ text: '', type: '' }); // Eski mesajları temizle
 
-    if (username === correctUser && password === correctPass) {
-      setIsLoading(true);
+    // 2. SUPABASE İLE GİRİŞ İŞLEMİ
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      // Şifre veya E-posta yanlışsa Supabase bize 'error' döndürür
+      setMessage({ text: "E-posta veya şifre hatalı!", type: "error" });
+      setPassword(''); // Güvenlik için şifre kutusunu temizle
+      setIsLoading(false);
+    } else {
+      // Başarılı giriş
       setMessage({ text: "Giriş başarılı! Yönlendiriliyorsunuz...", type: "success" });
-
       setTimeout(() => {
-        // Dosya src/pages/anasayfa.js olduğu için burası artık çalışacak
         router.push('/anasayfa'); 
       }, 1500);
-      
-    } else {
-      setMessage({ text: "Kullanıcı adı veya şifre hatalı!", type: "error" });
-      setPassword('');
     }
   };
 
@@ -41,10 +49,10 @@ export default function Login() {
         
         <form onSubmit={handleSubmit}>
           <input 
-            type="text" 
-            placeholder="Kullanıcı Adı" 
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email" // Tipi email olarak değiştirdik
+            placeholder="E-posta Adresiniz" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={styles.input}
             disabled={isLoading}
             required 
