@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export default function Dashboard() {
   const router = useRouter();
 
-  const menuItems = [
+   const menuItems = [
     {
       id: 'plan',
       title: 'Plan Yönetimi',
@@ -49,7 +49,7 @@ export default function Dashboard() {
       id: 'game',
       title: 'Oyun',
       description: 'Resimleri Eşleştir.',
-      icon: '🎮',
+      icon: '🧩', // Değiştirildi: Yapboz Parçası
       path: '/game',
       color: '#f87171' // kırmızı
     },
@@ -57,9 +57,25 @@ export default function Dashboard() {
       id: 'game2',
       title: 'Oyun',
       description: 'Soru Sor Puan Topla.',
-      icon: '🎮',
+      icon: '💡', // Değiştirildi: Ampul
       path: '/game2',
       color: '#ffea00' // sarı  
+    },
+    {
+      id: 'cark',
+      title: 'Çark',
+      description: 'Çarkı Çevir.',
+      icon: '🎡', // Değiştirildi: Dönme Dolap
+      path: '/cark',
+      color: '#ff9500' // turuncu  
+    },
+    {
+      id: 'pulse',
+      title: 'Dijital Dokunuş',
+      description: 'Ona seni düşündüğünü hissettir.',
+      icon: '⚡',
+      path: '/titresim',
+      color: '#06b6d4' // Turkuaz
     }
   ];
 
