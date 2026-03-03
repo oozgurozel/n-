@@ -2,12 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-// 1. SUPABASE BAĞLANTISINI İÇERİ AKTARIYORUZ
-// (Dosya yolu senin klasör yapına göre '../lib/supabaseClient' veya '@/lib/supabaseClient' olabilir)
 import { supabase } from '../lib/supabaseClient';
 
 export default function Login() {
-  // Supabase Auth e-posta kullandığı için username yerine email state'i kullanıyoruz
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -15,24 +12,21 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => { // async ekledik çünkü Supabase'den cevap bekleyeceğiz
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setMessage({ text: '', type: '' }); // Eski mesajları temizle
+    setMessage({ text: '', type: '' });
 
-    // 2. SUPABASE İLE GİRİŞ İŞLEMİ
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
     if (error) {
-      // Şifre veya E-posta yanlışsa Supabase bize 'error' döndürür
-      setMessage({ text: "E-posta veya şifre hatalı!", type: "error" });
-      setPassword(''); // Güvenlik için şifre kutusunu temizle
+      setMessage({ text: "Giriş bilgileri hatalı!", type: "error" });
+      setPassword('');
       setIsLoading(false);
     } else {
-      // Başarılı giriş
       setMessage({ text: "Giriş başarılı! Yönlendiriliyorsunuz...", type: "success" });
       setTimeout(() => {
         router.push('/anasayfa'); 
@@ -47,13 +41,17 @@ export default function Login() {
           <img src="/NÖ.png" alt="Logo" style={styles.logo} />
         </div>
         
-        <form onSubmit={handleSubmit}>
-         <input 
-            type="text" // 'email' yerine 'text' yaptık
-            inputMode="email" // Klavyede @ işaretini yine gösterir ama zorunlu tutmaz
-            placeholder="E-posta veya Kullanıcı Adı" 
+        {/* noValidate: Tarayıcının "e-posta girin" uyarısını susturur */}
+        <form onSubmit={handleSubmit} noValidate>
+          <input 
+            type="email" // Tasarımı korumak için email bıraktık
+            inputMode="email" // Mobilde @ işaretli klavyeyi açar
+            placeholder="E-posta Adresiniz" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={styles.input} // Stil buraya geri eklendi (Tasarım düzeldi)
+            disabled={isLoading}
+            required 
           />
           <input 
             type="password" 
@@ -102,7 +100,18 @@ const styles = {
   card: { background: '#000000', padding: '2.5rem', borderRadius: '16px', boxShadow: '0 10px 25px rgba(0,0,0,0.5)', width: '350px', textAlign: 'center', border: '1px solid #1e293b' },
   logoWrapper: { display: 'flex', justifyContent: 'center', marginBottom: '25px' },
   logo: { width: '100px', height: 'auto', display: 'block' },
-  input: { width: '100%', padding: '12px', margin: '12px 0', border: '1px solid #334155', borderRadius: '8px', backgroundColor: '#1e293b', color: 'white', fontSize: '14px', outline: 'none' },
+  input: { 
+    width: '100%', 
+    padding: '12px', 
+    margin: '12px 0', 
+    border: '1px solid #334155', 
+    borderRadius: '8px', 
+    backgroundColor: '#1e293b', 
+    color: 'white', 
+    fontSize: '14px', 
+    outline: 'none',
+    boxSizing: 'border-box' // Mobilde taşmaları önlemek için eklendi
+  },
   button: { 
     width: '100%', padding: '12px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '8px', 
     cursor: 'pointer', fontSize: '16px', fontWeight: '600', marginTop: '10px',
