@@ -43,22 +43,27 @@ export default function Login() {
         
         {/* noValidate: Tarayıcının "e-posta girin" uyarısını susturur */}
         <form onSubmit={handleSubmit} noValidate>
-          <input 
-            type="email" // Tasarımı korumak için email bıraktık
-            inputMode="email" // Mobilde @ işaretli klavyeyi açar
+        <input 
+            type="email" 
+            inputMode="email" 
             placeholder="E-posta Adresiniz" 
+            // .trim() ekleyerek sağdaki-soldaki gizli boşlukları siliyoruz
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={styles.input} // Stil buraya geri eklendi (Tasarım düzeldi)
+            onChange={(e) => setEmail(e.target.value.trim().toLowerCase())} 
+            style={styles.input}
+            autoCapitalize="none" // İlk harfi büyük yapmasını engeller
+            autoCorrect="off"     // Otomatik düzeltmeyi kapatır
             disabled={isLoading}
             required 
           />
+
           <input 
             type="password" 
             placeholder="Şifre" 
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)} // Şifrede boşluk olabilir, trim yapmıyoruz
             style={styles.input}
+            autoCapitalize="none"
             disabled={isLoading}
             required 
           />
