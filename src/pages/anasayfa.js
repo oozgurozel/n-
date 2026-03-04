@@ -49,25 +49,25 @@ export default function Dashboard() {
       id: 'game',
       title: 'Oyun',
       description: 'Resimleri Eşleştir.',
-      icon: '🧩', // Değiştirildi: Yapboz Parçası
+      icon: '🧩', 
       path: '/game',
-      color: '#f87171' // kırmızı
+      color: '#f87171' // Kırmızı
     },
     {
       id: 'game2',
       title: 'Oyun',
       description: 'Soru Sor Puan Topla.',
-      icon: '💡', // Değiştirildi: Ampul
+      icon: '💡', 
       path: '/game2',
-      color: '#ffea00' // sarı  
+      color: '#ffea00' // Sarı  
     },
     {
       id: 'cark',
       title: 'Çark',
       description: 'Çarkı Çevir.',
-      icon: '🎡', // Değiştirildi: Dönme Dolap
+      icon: '🎡', 
       path: '/cark',
-      color: '#ff9500' // turuncu  
+      color: '#ff9500' // Turuncu  
     },
     {
       id: 'pulse',
@@ -82,8 +82,25 @@ export default function Dashboard() {
       title: 'Adalet Terazisi',
       description: 'Hukuk bilgini zamana karşı test et.',
       icon: '⚖️',
-      path: '/hukukgame', // Dosyaya verdiğin isim
+      path: '/hukukgame', 
       color: '#fbbf24' // Altın Sarısı
+    },
+    // --- YENİ EKLENEN EĞİTİM MODÜLÜ ---
+    {
+      id: 'akademi',
+      title: 'NÖ Akademi',
+      description: 'Eğitim al, sınava gir, sertifikanı kazan.',
+      icon: '🎓',
+      path: '/akademi', // Dosyaya verdiğin isim (örneğin pages/egitim.js ise /egitim)
+      color: '#4f46e5' // İndigo / Koyu Mavi
+    },
+    {
+      id: 'ask-yuvasi',
+      title: 'Yuva',
+      description: 'Eksikleri tamamla, evlilik bütçesini yönet.',
+      icon: '🏡',
+      path: '/yuva', // Dosyanın adını ne koyduysan (örn: pages/yuvamiz.js ise /yuvamiz)
+      color: '#10b981' // Zümrüt Yeşili
     }
   ];
 
